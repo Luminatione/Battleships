@@ -20,7 +20,7 @@ namespace Battleships
 
 		private List<bool> fieldsCheckState;
 		private int hits = 0;
-		private int maxHits = 13;
+		private int maxHits = 30;
 
 		public List<Ship> Ships { get; } = new List<Ship>();
 		public int SizeX { get; }
