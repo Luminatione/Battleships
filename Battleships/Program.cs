@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Battleships
 {
@@ -11,30 +12,18 @@ namespace Battleships
 		{
 			return input.Length == 2 && input[0] < ySize + 'a' && input[0] >= 'a' && input[1] >= '0' && input[1] < xSize + '0';
 		}
+
+		
 		static void Main(string[] args)
 		{
+			AIPlayer firstPlayer = new AIPlayer(new Map(xSize, ySize));
+			AIPlayer secondPlayer = new AIPlayer(new Map(xSize, ySize));
 
-			Map map = new Map(xSize, ySize);
-
-			while (!map.IsGameEnded())
+			while (!firstPlayer.Map.IsGameEnded() || !secondPlayer.Map.IsGameEnded())
 			{
-				Console.Write(map.MapDisplay);
-				string input = Console.ReadLine();
-
-				if (IsValidInput(input))
-				{
-					Map.FieldCheckingResult result = map.CheckField(new Coordinates(input[0], input[1] - '0'));
-					Console.Clear();
-					Console.WriteLine(result.ToString());
-				}
-				else
-				{
-					Console.Clear();
-					Console.WriteLine("Entered invalid position");
-				}
+				firstPlayer.MakeMove();
+				secondPlayer.MakeMove();
 			}
-			Console.Clear();
-			Console.WriteLine("You won!");
 		}
 	}
 }
