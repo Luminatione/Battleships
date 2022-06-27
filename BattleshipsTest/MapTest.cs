@@ -16,7 +16,7 @@ namespace BattleshipsTest
 		{
 			Assert.ThrowsException<ArgumentException>(() => new Map(4, 4));
 			Map map = new Map(10, 10);
-			Assert.IsTrue(map.SizeX == 10 && map.SizeY == 10 && map.Ships.Count == 3);
+			Assert.IsTrue(map.SizeX == 10 && map.SizeY == 10 && map.Ships.Count == 10);
 		}
 		[TestMethod]
 		public void IsGameEndedTest()
@@ -38,7 +38,7 @@ namespace BattleshipsTest
 			Assert.AreEqual(Map.FieldCheckingResult.Hit, map.CheckField(a));
 			Assert.AreEqual(Map.FieldCheckingResult.Checked, map.CheckField(a));
 			Map map1 = new Map(10, 10);
-			Assert.AreEqual(87, GetMissesAmount(map1));
+			Assert.AreEqual(70, GetMissesAmount(map1));
 		}
 
 		private int GetMissesAmount(Map map)
