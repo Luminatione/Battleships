@@ -13,17 +13,17 @@ namespace Battleships
 			return input.Length == 2 && input[0] < ySize + 'a' && input[0] >= 'a' && input[1] >= '0' && input[1] < xSize + '0';
 		}
 
-		
+
 		static void Main(string[] args)
 		{
+
 			AIPlayer firstPlayer = new AIPlayer(new Map(xSize, ySize));
 			AIPlayer secondPlayer = new AIPlayer(new Map(xSize, ySize));
-
-			while (!firstPlayer.Map.IsGameEnded() || !secondPlayer.Map.IsGameEnded())
+			do
 			{
-				firstPlayer.MakeMove();
-				secondPlayer.MakeMove();
-			}
+				while (firstPlayer.MakeMove() != Map.FieldCheckingResult.Miss) ;
+				while (secondPlayer.MakeMove() != Map.FieldCheckingResult.Miss) ;
+			} while (!firstPlayer.Map.IsGameEnded() && !secondPlayer.Map.IsGameEnded());
 		}
 	}
 }
