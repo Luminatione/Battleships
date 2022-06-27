@@ -10,22 +10,22 @@ namespace Battleships
 		private List<Coordinates> moves;
 		private int currentMove = 0;
 
-		private Map map;
+		public Map Map { get; }
 		private Move moveType;
 
 		public AIPlayer(Map map)
 		{
-			this.map = map;
+			this.Map = map;
 			moves = GetAllPossibleCoordinates();
 			moveType = new BlindShot(map, moves);
 		}
 
 		private List<Coordinates> GetAllPossibleCoordinates()
 		{
-			List<Coordinates> result = new List<Coordinates>(map.SizeX * map.SizeY);
-			for (int i = 0; i < map.SizeX; i++)
+			List<Coordinates> result = new List<Coordinates>(Map.SizeX * Map.SizeY);
+			for (int i = 0; i < Map.SizeX; i++)
 			{
-				for (int j = 0; j < map.SizeY; j++)
+				for (int j = 0; j < Map.SizeY; j++)
 				{
 					result.Add(new Coordinates((char)(j + 'a'), i));
 				}
