@@ -34,10 +34,15 @@ namespace Battleships
 			return result;
 		}
 
-		public void MakeMove()
+		public Map.FieldCheckingResult MakeMove()
 		{
-			moveType.MakeMove();
-			moveType = moveType.NextMove();
+			if (moves.Count > 0)
+			{
+				Map.FieldCheckingResult result = moveType.MakeMove();
+				moveType = moveType.NextMove();
+				return result;
+			}
+			return Map.FieldCheckingResult.Miss;
 		}
 	}
 }
